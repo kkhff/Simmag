@@ -1,65 +1,127 @@
-import Image from "next/image";
+import Link from "next/link";
+import { GraduationCap, ArrowRight } from "lucide-react";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-[#eff6ff] via-white to-white font-sans overflow-hidden">
+      
+      {/* NAVBAR */}
+      <header className="container mx-auto px-6 sm:px-12 py-6 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg shadow-sm">
+            <GraduationCap size={20} />
+          </div>
+          <span className="text-xl font-black text-slate-800 tracking-tight">SIMMAS</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Desktop Menu */}
+        
+
+        {/* Login Button */}
+        <div>
+          <Link href="/login">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-all shadow-sm shadow-blue-600/20">
+              Log In
+            </button>
+          </Link>
         </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <main className="container mx-auto px-6 sm:px-12 pt-20 pb-10 flex flex-col items-center text-center">
+        
+        {/* Badge */}
+        <div className="bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-8">
+          Platform Magang Siswa SMK
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-800 tracking-tight leading-[1.1] mb-6 max-w-4xl">
+          Kelola Program Magang <br className="hidden sm:block" />
+          <span className="text-blue-600">Lebih Cerdas</span>
+        </h1>
+
+        {/* Sub-headline */}
+        <p className="text-base sm:text-lg text-slate-500 font-medium max-w-2xl mb-10 leading-relaxed">
+          SIMMAS menghubungkan siswa, guru pembimbing, dan perusahaan mitra dalam satu sistem yang modern, transparan, dan mudah digunakan.
+        </p>
+
+        {/* CTA Buttons */}
+        
       </main>
+
+      {/* MOCKUP UI ILLUSTRATION */}
+      <div className="container mx-auto px-6 mt-12">
+        <div className="max-w-5xl mx-auto bg-white/40 backdrop-blur-xl border border-white/60 p-4 sm:p-6 rounded-t-[2.5rem] shadow-2xl relative overflow-hidden h-[400px]">
+          
+          {/* Inner App Window */}
+          <div className="w-full h-full bg-white rounded-t-2xl border border-slate-100 shadow-sm flex overflow-hidden">
+            
+            {/* Sidebar Skeleton */}
+            <div className="w-16 sm:w-64 bg-slate-50 border-r border-slate-100 p-4 flex flex-col gap-6 shrink-0">
+              {/* Logo Skeleton */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 bg-blue-100 rounded-lg shrink-0"></div>
+                <div className="h-4 w-24 bg-slate-200 rounded-md hidden sm:block"></div>
+              </div>
+              {/* Menu Items */}
+              <div className="space-y-3">
+                <div className="h-10 bg-blue-50 border border-blue-100 rounded-xl hidden sm:block"></div>
+                <div className="w-8 h-8 bg-blue-50 rounded-xl sm:hidden mx-auto"></div>
+                
+                <div className="h-10 bg-transparent rounded-xl flex items-center px-3 hidden sm:flex">
+                  <div className="h-3 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div className="w-8 h-8 bg-slate-100 rounded-xl sm:hidden mx-auto"></div>
+
+                <div className="h-10 bg-transparent rounded-xl flex items-center px-3 hidden sm:flex">
+                  <div className="h-3 w-16 bg-slate-200 rounded-md"></div>
+                </div>
+                <div className="w-8 h-8 bg-slate-100 rounded-xl sm:hidden mx-auto"></div>
+              </div>
+            </div>
+
+            {/* Main Content Skeleton */}
+            <div className="flex-1 p-6 sm:p-10 flex flex-col gap-8">
+              {/* Topbar */}
+              <div className="flex justify-between items-center">
+                <div className="space-y-2">
+                  <div className="h-6 w-48 bg-slate-200 rounded-lg"></div>
+                  <div className="h-3 w-32 bg-slate-100 rounded-md"></div>
+                </div>
+                <div className="w-10 h-10 bg-blue-100 rounded-full shrink-0"></div>
+              </div>
+
+              {/* Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="h-28 bg-white border border-slate-100 rounded-2xl shadow-sm p-5 flex flex-col justify-between">
+                  <div className="h-3 w-20 bg-slate-100 rounded-md"></div>
+                  <div className="h-8 w-12 bg-slate-200 rounded-lg"></div>
+                </div>
+                <div className="h-28 bg-white border border-slate-100 rounded-2xl shadow-sm p-5 flex flex-col justify-between">
+                  <div className="h-3 w-24 bg-slate-100 rounded-md"></div>
+                  <div className="h-8 w-16 bg-slate-200 rounded-lg"></div>
+                </div>
+                <div className="h-28 bg-white border border-slate-100 rounded-2xl shadow-sm p-5 flex flex-col justify-between hidden sm:flex">
+                  <div className="h-3 w-16 bg-slate-100 rounded-md"></div>
+                  <div className="h-8 w-10 bg-slate-200 rounded-lg"></div>
+                </div>
+              </div>
+
+              {/* List Area */}
+              <div className="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm p-6 space-y-4">
+                <div className="h-4 w-32 bg-slate-200 rounded-md mb-6"></div>
+                <div className="h-12 bg-slate-50 rounded-xl border border-slate-100"></div>
+                <div className="h-12 bg-slate-50 rounded-xl border border-slate-100"></div>
+                <div className="h-12 bg-slate-50 rounded-xl border border-slate-100 hidden sm:block"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
