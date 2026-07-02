@@ -12,7 +12,7 @@ export default function LandingPage() {
           <div className="w-8 h-8 bg-blue-600 text-white flex items-center justify-center rounded-lg shadow-sm">
             <GraduationCap size={20} />
           </div>
-          <span className="text-xl font-black text-slate-800 tracking-tight">SIMMAS</span>
+          <span className="text-xl font-black text-slate-800 tracking-tight">SIMMAG</span>
         </div>
 
         {/* Desktop Menu */}
