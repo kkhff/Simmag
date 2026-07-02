@@ -159,14 +159,23 @@ export default function MagangPage() {
       {/* TABEL UTAMA */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
 
-        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
-          <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
-            <span className="text-blue-600"><Briefcase size={20} /></span> Hubungan Penempatan Magang
-          </h3>
-          <Button onClick={() => { setEditMode(false); setSelectedMagangData(null); setIsModalOpen(true); }} className="bg-blue-600 hover:bg-blue-700 font-bold rounded-full px-6 shadow-md shadow-blue-600/10">
-            <Plus size={18} className="mr-2" /> Tambah Penempatan
-          </Button>
-        </div>
+<div className="p-4 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 bg-white">
+  
+  {/* Bagian Judul: Tetap presisi di kiri */}
+  <div className="flex items-center gap-2 text-slate-800 font-bold text-lg">
+    <span className="text-cyan-500"><Briefcase size={20} /></span>
+    Hubungan Penempatan Magang
+  </div>
+
+  {/* Tombol Tambah Siswa: w-full di HP, sm:w-auto di laptop */}
+  <Button 
+    onClick={() => { setEditMode(false); setSelectedMagangData(null); setIsModalOpen(true); }}
+    className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 rounded-xl sm:rounded-full font-bold px-6 shadow-md shadow-cyan-500/20 h-10 flex items-center justify-center shrink-0"
+  >
+    <Plus size={18} className="mr-2 shrink-0" />
+    Tambah Penempatan
+  </Button>
+</div>
 
         {/* SEARCH & FILTER BAR */}
         <div className="p-4 bg-white flex flex-col md:flex-row justify-between items-center gap-4">

@@ -158,13 +158,21 @@ export function ExportDudi({ data, schoolProfile, namaPencetak }: ExportDudiProp
   };
 
   return (
-    <div className="flex items-center gap-3 w-full sm:w-auto">
-      <Button variant="outline" onClick={exportToExcel} className="w-full sm:w-auto border-emerald-200 text-emerald-700 hover:bg-emerald-50 bg-white font-bold rounded-xl shadow-sm">
-        <FileSpreadsheet size={16} className="mr-2"/> Export Excel
-      </Button>
-      <Button variant="outline" onClick={exportToPDF} className="w-full sm:w-auto border-blue-200 text-blue-700 hover:bg-blue-50 bg-white font-bold rounded-xl shadow-sm">
-        <Printer size={16} className="mr-2"/> Export PDF
-      </Button>
-    </div>
+  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+    <Button 
+      variant="outline" 
+      onClick={exportToExcel} 
+      className="w-full sm:w-auto border-emerald-200 text-emerald-700 hover:bg-emerald-50 bg-white font-bold rounded-xl shadow-sm h-11 sm:h-10"
+    >
+      <FileSpreadsheet size={16} className="mr-2 shrink-0"/> Export Excel
+    </Button>
+    <Button 
+      variant="outline" 
+      onClick={exportToPDF} 
+      className="w-full sm:w-auto border-blue-200 text-blue-700 hover:bg-blue-50 bg-white font-bold rounded-xl shadow-sm h-11 sm:h-10"
+    >
+      <Printer size={16} className="mr-2 shrink-0"/> Export PDF
+    </Button>
+  </div>
   );
 }

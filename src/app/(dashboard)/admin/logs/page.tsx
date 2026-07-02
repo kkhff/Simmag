@@ -96,7 +96,7 @@ export default function ActivityLogsPage() {
       <h2 className="text-3xl font-black text-slate-800">Activity Logs</h2>
 
       {/* STAT CARDS */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Total Logs", val: total, color: "text-slate-800" },
           { label: "Created", val: created, color: "text-emerald-600" },
@@ -111,41 +111,61 @@ export default function ActivityLogsPage() {
       </div>
 
       {/* FILTERS */}
-      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex gap-3 items-center">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-2 text-slate-400" size={18} />
-          <Input placeholder="Search logs..." className="pl-10" onChange={(e) => setSearch(e.target.value)} />
-        </div>
-        <Select onValueChange={setActionFilter}>
-          <SelectTrigger className="w-[180px]"><SelectValue placeholder="All Actions" /></SelectTrigger>
-          <SelectContent>
-            <SelectItem value="All Actions">All Actions</SelectItem>
-            <SelectItem value="Created">Created</SelectItem>
-            <SelectItem value="Updated">Updated</SelectItem>
-            <SelectItem value="Deleted">Deleted</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select onValueChange={setEntityFilter}>
-          <SelectTrigger className="w-[180px]"><SelectValue placeholder="All Entities" /></SelectTrigger>
-          <SelectContent>
-            <SelectItem value="All Entities">All Entities</SelectItem>
-            <SelectItem value="User">User</SelectItem>
-            <SelectItem value="Dudi">DUDI</SelectItem>
-            <SelectItem value="Magang">Magang</SelectItem>
-            <SelectItem value="Logbook">Logbook</SelectItem>
-            <SelectItem value="Activity">Activity</SelectItem>
-            <SelectItem value="Settings">Settings</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button 
-          variant="destructive" 
-          onClick={handleClearLogs} // <-- Panggil fungsi baru kita
-          disabled={isLoading || logs.length === 0} // Gak bisa diklik kalau log emang udah kosong
-          className="rounded-full px-5 font-bold"
-        >
-          <Trash2 size={16} className="mr-2" /> Clear Logs
-        </Button>
-      </div>
+<div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col lg:flex-row gap-3 items-stretch lg:items-center w-full">
+  
+  {/* 📐 Bagian Pencarian & Dropdown: Pake grid di mobile biar gak sempit */}
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-1">
+    
+    {/* Input Search */}
+    <div className="relative w-full">
+      <Search className="absolute left-3 top-2.5 text-slate-400" size={18} />
+      <Input 
+        placeholder="Search logs..." 
+        className="pl-10 h-10 rounded-xl" 
+        onChange={(e) => setSearch(e.target.value)} 
+      />
+    </div>
+
+    {/* Filter Action */}
+    <Select onValueChange={setActionFilter}>
+      <SelectTrigger className="w-full h-10 rounded-xl">
+        <SelectValue placeholder="All Actions" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="All Actions">All Actions</SelectItem>
+        <SelectItem value="Created">Created</SelectItem>
+        <SelectItem value="Updated">Updated</SelectItem>
+        <SelectItem value="Deleted">Deleted</SelectItem>
+      </SelectContent>
+    </Select>
+
+    {/* Filter Entity */}
+    <Select onValueChange={setEntityFilter}>
+      <SelectTrigger className="w-full h-10 rounded-xl">
+        <SelectValue placeholder="All Entities" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="All Entities">All Entities</SelectItem>
+        <SelectItem value="User">User</SelectItem>
+        <SelectItem value="Dudi">DUDI</SelectItem>
+        <SelectItem value="Magang">Magang</SelectItem>
+        <SelectItem value="Logbook">Logbook</SelectItem>
+        <SelectItem value="Activity">Activity</SelectItem>
+        <SelectItem value="Settings">Settings</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+
+  {/* 🚨 Tombol Clear Logs: Di mobile lebar penuh, di laptop pas sesuai konten */}
+  <Button 
+    variant="destructive" 
+    onClick={handleClearLogs} 
+    disabled={isLoading || logs.length === 0}
+    className="rounded-xl px-5 font-bold h-10 w-full lg:w-auto shrink-0"
+  >
+    <Trash2 size={16} className="mr-2 shrink-0" /> Clear Logs
+  </Button>
+</div>
 
       {/* TIMELINE */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">

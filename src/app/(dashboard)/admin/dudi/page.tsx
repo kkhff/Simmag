@@ -186,16 +186,23 @@ export default function DudiPage() {
       />
 
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mt-6">
-        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-white">
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-lg">
-            <span className="text-cyan-500"><Building size={20} /></span>
-            Daftar DUDI
-          </div>
-          <Button onClick={handleAddClick} className="bg-cyan-500 hover:bg-cyan-600 rounded-full font-bold px-6 shadow-md shadow-cyan-500/20">
-            <Plus size={18} className="mr-2" />
-            Tambah DUDI
-          </Button>
-        </div>
+<div className="p-4 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 bg-white">
+  
+  {/* Bagian Judul: Tetap presisi di kiri */}
+  <div className="flex items-center gap-2 text-slate-800 font-bold text-lg">
+    <span className="text-cyan-500"><Building size={20} /></span>
+    Daftar DUDI
+  </div>
+
+  {/* Tombol Tambah Siswa: w-full di HP, sm:w-auto di laptop */}
+  <Button 
+    onClick={handleAddClick} 
+    className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 rounded-xl sm:rounded-full font-bold px-6 shadow-md shadow-cyan-500/20 h-10 flex items-center justify-center shrink-0"
+  >
+    <Plus size={18} className="mr-2 shrink-0" />
+    Tambah DUDI
+  </Button>
+</div>
 
         <div className="p-4 bg-white flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-100">
           <div className="relative w-full md:w-96">

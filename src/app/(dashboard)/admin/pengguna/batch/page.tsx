@@ -122,31 +122,42 @@ export default function BatchOperationsPage() {
 )}
 
       <Card className="border-0 shadow-md shadow-slate-200/50 rounded-2xl bg-white">
-        <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4">
-          <div>
-            <CardTitle className="text-lg font-bold text-slate-700">Daftar Antrean Akun ({rows.length})</CardTitle>
-            <CardDescription className="text-xs">Gunakan Email sebagai kunci unik untuk pembaruan data via Upsert.</CardDescription>
-          </div>
-          <div className="flex gap-2">
-            <Button 
-              variant="default" 
-              onClick={() => handleSubmitBatch(false)} 
-              disabled={isLoading}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl"
-            >
-              {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-              Batch Insert
-            </Button>
-            <Button 
-              variant="outline" 
-              onClick={() => handleSubmitBatch(true)} 
-              disabled={isLoading}
-              className="border-blue-600 text-blue-600 hover:bg-blue-50 font-bold rounded-xl"
-            >
-              Batch Upsert (by Email)
-            </Button>
-          </div>
-        </CardHeader>
+      <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-4 gap-4">
+        
+        {/* Bagian Teks Judul & Deskripsi */}
+        <div>
+          <CardTitle className="text-lg font-bold text-slate-700">
+            Daftar Antrean Akun ({rows.length})
+          </CardTitle>
+          <CardDescription className="text-xs">
+            Gunakan Email sebagai kunci unik untuk pembaruan data via Upsert.
+          </CardDescription>
+        </div>
+      
+        {/* Bagian Tombol-Tombol: Numpuk vertikal di mobile, sejajar horizontal di desktop */}
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+          <Button 
+            variant="default" 
+            onClick={() => handleSubmitBatch(false)} 
+            disabled={isLoading}
+            /* w-full di mobile, sm:w-auto di laptop */
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl h-10 flex items-center justify-center shrink-0"
+          >
+            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin shrink-0" /> : null}
+            Batch Insert
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            onClick={() => handleSubmitBatch(true)} 
+            disabled={isLoading}
+            /* w-full di mobile, sm:w-auto di laptop */
+            className="w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 font-bold rounded-xl h-10 flex items-center justify-center shrink-0"
+          >
+            Batch Upsert (by Email)
+          </Button>
+        </div>
+      </CardHeader>
 
         <CardContent className="pt-4">
           <div className="overflow-x-auto">

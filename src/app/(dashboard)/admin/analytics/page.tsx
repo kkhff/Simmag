@@ -45,40 +45,25 @@ export default function AnalyticsPage() {
         </button>
       </div>
 
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: "Siswa Aktif", val: data?.cards.siswaAktif, color: "text-blue-600", icon: <Users /> },
+                { label: "Mitra DUDI", val: data?.cards.totalDudi, color: "text-emerald-600", icon: <Building2 /> },
+                { label: "Pending Approval", val: data?.cards.pendingMagang, color: "text-amber-600", icon: <ClipboardCopy /> },
+                { label: "Absensi Hari Ini", val: data?.cards.rasioPresensi, color: "text-purple-600", icon: <Percent /> },
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                  <div className={`text-[10px] font-bold uppercase tracking-widest mb-2 flex items-center gap-2 ${item.color}`}>
+                    {item.icon} {item.label}
+                  </div>
+                  <h3 className="text-3xl font-black text-slate-800">{item.val}</h3>
+                </div>
+              ))}
+            </div>
+      
+
       {/* 4 GRID CARDS STATS (Bagian Atas) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Siswa Aktif</p>
-            <h3 className="text-2xl font-black text-slate-800 mt-1">{data?.cards.siswaAktif}</h3>
-          </div>
-          <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl"><Users size={22} /></div>
-        </div>
-
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Mitra DUDI</p>
-            <h3 className="text-2xl font-black text-slate-800 mt-1">{data?.cards.totalDudi}</h3>
-          </div>
-          <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl"><Building2 size={22} /></div>
-        </div>
-
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pending Approval</p>
-            <h3 className="text-2xl font-black text-slate-800 mt-1">{data?.cards.pendingMagang}</h3>
-          </div>
-          <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl"><ClipboardCopy size={22} /></div>
-        </div>
-
-        <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Absensi Hari Ini</p>
-            <h3 className="text-2xl font-black text-slate-800 mt-1">{data?.cards.rasioPresensi}</h3>
-          </div>
-          <div className="p-3 bg-purple-50 text-purple-600 rounded-2xl"><Percent size={22} /></div>
-        </div>
-      </div>
+      
 
       {/* CHARTS GRAPHICS SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

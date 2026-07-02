@@ -152,19 +152,27 @@ export default function Topbar() {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex items-center justify-between h-20 px-8 bg-white border-b border-slate-200 shadow-sm font-sans w-full">
-      <div className="flex items-center gap-2">
-        <h1 className="text-lg font-black text-slate-800 tracking-tight">{namaSekolah}</h1>
+    /* 📱 Mobile: px-4, h-16 (lebih ramping). 💻 Desktop: sm:px-8 sm:h-20 */
+    <header className="sticky top-0 z-20 flex items-center justify-between h-16 sm:h-20 px-4 sm:px-8 bg-white border-b border-slate-200 shadow-sm font-sans w-full">
+      
+      {/* 🏫 Bagian Kiri: Nama Sekolah (Anti-Tabrakan pakai truncate) */}
+      <div className="flex items-center gap-2 min-w-0 flex-1 mr-2 sm:mr-4">
+        <h1 className="text-base sm:text-lg font-black text-slate-800 tracking-tight truncate">
+          {namaSekolah}
+        </h1>
       </div>
 
-      <div className="flex items-center gap-5">
-        <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black border transition-all ${
+      {/* 🛠️ Bagian Kanan: Status, Notif, & Profil */}
+      <div className="flex items-center gap-2 sm:gap-5 shrink-0">
+        
+        {/* Status Online/Offline: Teks disembunyikan di mobile, menyisakan dot indikator */}
+        <div className={`flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full text-[10px] font-black border transition-all ${
           isOnline 
             ? "bg-emerald-50 text-emerald-600 border-emerald-100" 
             : "bg-red-50 text-red-600 border-red-100 animate-pulse"
         }`}>
-          <span className={`h-1.5 w-1.5 rounded-full ${isOnline ? "bg-emerald-500" : "bg-red-500"}`} />
-          {isOnline ? "ONLINE" : "OFFLINE"}
+          <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${isOnline ? "bg-emerald-500" : "bg-red-500"}`} />
+          <span className="hidden xs:inline sm:inline">{isOnline ? "ONLINE" : "OFFLINE"}</span>
         </div>
         
         {/* AREA IKON NOTIFIKASI & DROPDOWN MODAL */}
@@ -174,7 +182,7 @@ export default function Topbar() {
               onClick={toggleNotifications}
               className="relative cursor-pointer p-2 hover:bg-slate-100 rounded-full transition-all"
             >
-              <Bell size={20} className="text-slate-600" />
+              <Bell size={18} className="text-slate-600 sm:w-[20px] sm:h-[20px]" />
               {notifications > 0 && (
                 <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 text-white text-[9px] font-bold flex items-center justify-center rounded-full animate-bounce shadow-sm">
                   {notifications}
@@ -182,15 +190,15 @@ export default function Topbar() {
               )}
             </div>
 
-            {/* MODAL / DROPDOWN NOTIFIKASI MINI */}
+            {/* MODAL / DROPDOWN NOTIFIKASI MINI: Digeser posisinya di mobile agar tidak mentok layar kanan */}
             {showNotifDropdown && (
-              <div className="absolute right-0 mt-3 w-80 bg-white border border-slate-100 shadow-2xl rounded-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+              <div className="absolute right-[-10px] sm:right-0 mt-3 w-76 sm:w-80 bg-white border border-slate-100 shadow-2xl rounded-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
                 <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                   <h3 className="font-black text-sm text-slate-800">Notifikasi Terbaru</h3>
                   <div className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Maks 5</div>
                 </div>
                 
-                <div className="max-h-[300px] overflow-y-auto">
+                <div className="max-h-[280px] sm:max-h-[300px] overflow-y-auto">
                   {notifList.length === 0 ? (
                     <div className="p-6 text-center text-xs text-slate-400 font-medium">
                       Belum ada notifikasi jurnal masuk dari siswa bimbingan Anda.
@@ -199,11 +207,11 @@ export default function Topbar() {
                     notifList.map((notif) => (
                       <div key={notif.id} className="p-4 border-b border-slate-50 hover:bg-slate-50 transition-colors cursor-pointer group">
                         <div className="flex items-start gap-3">
-                          <div className="mt-0.5 p-2 bg-blue-50 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <div className="mt-0.5 p-2 bg-blue-50 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
                             <FileText size={14} />
                           </div>
-                          <div>
-                            <p className="text-xs font-bold text-slate-800">
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs font-bold text-slate-800 truncate">
                               {(notif.magang?.siswa as any)?.users?.nama_lengkap || "Siswa"}
                             </p>
                             <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1 leading-relaxed">
@@ -228,17 +236,28 @@ export default function Topbar() {
           </div>
         )}
         
-        <div className="w-px h-8 bg-slate-200 hidden sm:block"></div>
+        {/* Garis Pembatas: Hanya muncul dari layar sm ke atas */}
+        <div className="w-px h-6 sm:h-8 bg-slate-200 hidden sm:block"></div>
 
-        <div className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 p-1.5 rounded-xl transition-colors">
+        {/* Profil Avatar: Padding disesuaikan untuk touch target mobile */}
+        <div className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 p-1 sm:p-1.5 rounded-xl transition-colors shrink-0">
           <div className="hidden sm:flex flex-col items-end">
-            {isLoading ? <div className="w-24 h-4 bg-slate-100 rounded animate-pulse mb-1"></div> : <p className="text-sm font-bold text-slate-800 leading-tight">{userName}</p>}
-            {isLoading ? <div className="w-12 h-3 bg-slate-100 rounded animate-pulse"></div> : <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mt-0.5">{userRole}</p>}
+            {isLoading ? (
+              <div className="w-24 h-4 bg-slate-100 rounded animate-pulse mb-1"></div>
+            ) : (
+              <p className="text-sm font-bold text-slate-800 leading-tight">{userName}</p>
+            )}
+            {isLoading ? (
+              <div className="w-12 h-3 bg-slate-100 rounded animate-pulse"></div>
+            ) : (
+              <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest mt-0.5">{userRole}</p>
+            )}
           </div>
-          <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold shadow-md shadow-blue-500/20 shrink-0">
-            {isLoading ? <User size={18} className="opacity-50" /> : initials}
+          <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-tr from-blue-600 to-cyan-500 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 shrink-0">
+            {isLoading ? <User size={16} className="opacity-50" /> : initials}
           </div>
         </div>
+
       </div>
     </header>
   );
